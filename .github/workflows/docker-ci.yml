@@ -38,5 +38,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-demo:1.0.0
-            ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-demo:1.0.0-${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-demo:1.1.0
+            ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-demo:1.1.0-${{ github.sha }}
