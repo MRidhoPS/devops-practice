@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  dev:
+    image: mridhophs/nextjs-demo:1.1.0-dev
+    container_name: nextjs-dev
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=development
+      - APP_NAME=nextjs-dev
+
+  stable-1:
+    image: mridhophs/nextjs-demo:1.1.0
+    container_name: nextjs-stable-1
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+      - APP_NAME=nextjs-stable-1
+
+  stable-2:
+    image: mridhophs/nextjs-demo:1.1.0
+    container_name: nextjs-stable-2
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+      - APP_NAME=nextjs-stable-2
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - dev
+      - stable-1
+      - stable-2
